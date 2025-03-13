@@ -23,7 +23,9 @@ jobs:
         with:
           node-version: 18
           cache: 'pnpm'
-          check-latest: true  # Garante que o pnpm esteja disponível
+
+      - name: Install pnpm
+        run: npm install -g pnpm
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
@@ -44,7 +46,9 @@ jobs:
         with:
           node-version: 18
           cache: 'pnpm'
-          check-latest: true
+
+      - name: Install pnpm
+        run: npm install -g pnpm
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
@@ -65,7 +69,9 @@ jobs:
         with:
           node-version: 18
           cache: 'pnpm'
-          check-latest: true
+
+      - name: Install pnpm
+        run: npm install -g pnpm
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
