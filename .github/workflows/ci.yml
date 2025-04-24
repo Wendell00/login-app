@@ -59,6 +59,7 @@ jobs:
   cypress:
     name: Run Cypress Tests
     runs-on: ubuntu-latest
+    environment: converse-with-ai
     needs: build
   
     steps:
