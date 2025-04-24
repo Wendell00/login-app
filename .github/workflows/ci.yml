@@ -59,28 +59,41 @@ jobs:
   cypress:
     name: Run Cypress Tests
     runs-on: ubuntu-latest
+    environment: converse-with-ai
     needs: build
+
+    env:
+      NEXT_PUBLIC_API_BASE_URL: ${{ vars.NEXT_PUBLIC_API_BASE_URL }}
+      AWS_COGNITO_CLIENT_ID: ${{ vars.AWS_COGNITO_CLIENT_ID }}
+      AWS_COGNITO_USER_POOL_ID: ${{ vars.AWS_COGNITO_USER_POOL_ID }}
+      AWS_COGNITO_CLIENT_SECRET: ${{ vars.AWS_COGNITO_CLIENT_SECRET }}
+      AWS_ACCESS_KEY_ID: ${{ vars.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ vars.AWS_SECRET_ACCESS_KEY }}
+      AWS_REGION: ${{ vars.AWS_REGION }}
+  
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-
+  
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 18
-
+  
       - name: Setup pnpm
         uses: pnpm/action-setup@v2
         with:
           version: 8
-
+  
       - name: Install dependencies
         run: pnpm install
 
+      - name: Build Next.js
+        run: pnpm run build
+      
       - name: Run Cypress Tests
         uses: cypress-io/github-action@v6
         with:
-          start: pnpm run dev
-          wait-on: 'http://localhost:3000'
-          browser: chrome
-          headless: true
+          start: pnpm run start
+          wait-on: 'http://localhost:3000' 
+
