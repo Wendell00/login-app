@@ -1,14 +1,11 @@
-import { heroui } from "@heroui/react";
 import type { Config } from "tailwindcss";
 
-import { generateColors } from "./src/utils/themes";
 
 const config: Config = {
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
-    "./node_modules/@heroui/theme/dist/**/*.{js,ts,jsx,tsx}",
+    "./src/app/**/*.{js,ts,jsx,tsx,mdx}"
   ],
   darkMode: "class",
   theme: {
@@ -56,6 +53,35 @@ const config: Config = {
         xl: "2rem",
       },
       colors: {
+        primary: {
+          100: '#0E291C',
+          200: '#007A12',
+          300: '#A7EFB2',
+          400: '#E0F9E4',
+          DEFAULT: '#5DC76D'
+        },
+        secondary: {
+          100: '#1D3257',
+          200: '#6FACCD',
+          DEFAULT: '#0E1829'
+        },
+        background: {
+          '100': '#F3F3F3',
+          '200': '#6B7280',
+          '300': '#111827',
+          DEFAULT: '#FFFFFF'
+        },
+        danger: {
+          DEFAULT: '#C0113C'
+        },
+        warning: {
+          DEFAULT: '#B75F19'
+        },
+        success: {
+          '100': '#088477',
+          '200': '#007A12',
+          DEFAULT: '#088477'
+        },
         tertiary: {
           "100": "#5E5E5E",
           "200": "#868686",
@@ -92,40 +118,6 @@ const config: Config = {
       },
     },
   },
-  plugins: [
-    heroui({
-      prefix: "nextui",
-      addCommonColors: false,
-      defaultTheme: "light",
-      defaultExtendTheme: "light",
-      layout: {
-        boxShadow: {
-          small:
-            "0rem 0.063rem 0.938rem 0rem #6B728014, 0rem 0.25rem 0.625rem 0rem #6B72800A",
-          medium:
-            "0rem 0.188rem 2.063rem 0.125rem #22222214, 0rem 0.5rem 1.125rem 0.063rem #2222220A",
-          large:
-            "0rem 0.563rem 2.875rem 0.5rem #22222214, 0rem 1.5rem 2.375rem 0.188rem #2222220A",
-        },
-        radius: {
-          small: "0.5rem",
-          medium: "0.75rem",
-          large: "1.5rem",
-        },
-      },
-      themes: {
-        light: {
-          colors: {
-            primary: generateColors("primary"),
-            secondary: generateColors("secondary"),
-            danger: generateColors("danger"),
-            warning: generateColors("warning"),
-            success: generateColors("success"),
-            background: generateColors("background"),
-          },
-        },
-      },
-    }),
-  ],
+  plugins: [],
 };
 export default config;

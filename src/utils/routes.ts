@@ -1,7 +1,7 @@
 export const routes = {
   auth: {
     home: "/auth",
-    register: "/auth/register",
+    createNewPassword: (username: string) => `/auth/create-password?username=${username}`,
   },
   home: {
     home: "/",

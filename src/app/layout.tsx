@@ -1,15 +1,23 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Poppins } from "next/font/google";
 import "./globals.css";
-import { HeroProvider } from "@/providers/heroui-provider";
 import { TranslationProvider } from "@/providers/translation-provider";
 import { RouteParams } from "@/utils/types";
 import { getTranslation, NAMESPACES } from "@/i18n";
+import { ReactQueryProvider } from "@/providers/react-query-provider";
+import { ThemeMuiProvider } from "@/providers/theme-mui-provider";
 
 const inter = Inter({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-inter",
+});
+
+const poppins = Poppins({
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-poppins",
 });
 
 export const metadata: Metadata = {
@@ -29,14 +37,18 @@ export default async function RootLayout({
 
   return (
     <html lang="en" className="light">
-      <body className={`${inter.className}`}>
-        <TranslationProvider
-          locale={locale}
-          namespaces={NAMESPACES}
-          resources={resources}
-        >
-          <HeroProvider>{children}</HeroProvider>
-        </TranslationProvider>
+      <body className={`${inter.className} ${poppins.className}`}>
+        <ReactQueryProvider>
+          <TranslationProvider
+            locale={locale}
+            namespaces={NAMESPACES}
+            resources={resources}
+          >
+            <ThemeMuiProvider>
+              <main className="w-full h-screen">{children}</main>
+            </ThemeMuiProvider>
+          </TranslationProvider>
+        </ReactQueryProvider>
       </body>
     </html>
   );

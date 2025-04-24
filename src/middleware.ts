@@ -22,6 +22,6 @@ export async function middleware(request: NextRequest): Promise<NextResponse> {
 
 export const config = {
   matcher: [
-    "/((?!ptBR/auth|enUS/auth|esES/auth|_next/static|_next/image|image|favicon.ico).*)",
+    "/((?!ptBR/auth|enUS/auth|esES/auth|_next/static|_next/image|/images|image|favicon.ico).*)",
   ],
 };
