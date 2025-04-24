@@ -12,7 +12,7 @@ import { decodeToken, refreshToken } from "./actions/authentication";
 export async function middleware(request: NextRequest): Promise<NextResponse> {
   const response = i18nRouter(request, i18nConfig);
   const locale =
-    response.headers.get('x-next-i18n-router-locale') ?? DEFAULT_LOCALE;
+    response.headers.get("x-next-i18n-router-locale") ?? DEFAULT_LOCALE;
 
   try {
     const refresh = request.cookies.get(CookieKey.RefreshToken)?.value;

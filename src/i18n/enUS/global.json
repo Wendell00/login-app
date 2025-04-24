@@ -1,3 +1,11 @@
 {
-  "welcomeBack": "Welcome Back"
+  "welcomeBack": "Welcome Back",
+  "welcomeMessage": "Hello, welcome!",
+  "toEnterType": "To log in, enter your",
+  "userName": "username",
+  "and": "and",
+  "password": "password.",
+  "notRememberYourPassword": "Didn't remember your password?",
+  "touchHereForReceiveHelp": "Tap here to get help.",
+  "continue": "Continue"
 }

@@ -44,13 +44,13 @@ describe("Auth component", () => {
     expect(screen.getByLabelText(/Nome de usuário/i)).toBeInTheDocument();
     expect(screen.getByLabelText(/Senha/i)).toBeInTheDocument();
     expect(
-      screen.getByRole("button", { name: /Continuar/i })
+      screen.getByRole("button", { name: /continue/i })
     ).toBeInTheDocument();
   });
 
   it("should display validation errors when submitting an empty form", async () => {
     render(<Auth />);
-    fireEvent.click(screen.getByRole("button", { name: /Continuar/i }));
+    fireEvent.click(screen.getByRole("button", { name: /continue/i })); // <- removido parêntese extra aqui
 
     expect(
       await screen.findByText(/O nome de usuário é obrigatório\./i)
@@ -72,7 +72,7 @@ describe("Auth component", () => {
     fireEvent.change(screen.getByLabelText(/Senha/i), {
       target: { value: password },
     });
-    fireEvent.click(screen.getByRole("button", { name: /Continuar/i }));
+    fireEvent.click(screen.getByRole("button", { name: /continue/i }));
 
     await waitFor(() => {
       expect(mockedSignIn).toHaveBeenCalledWith(username, password);
@@ -93,7 +93,7 @@ describe("Auth component", () => {
     fireEvent.change(screen.getByLabelText(/Senha/i), {
       target: { value: password },
     });
-    fireEvent.click(screen.getByRole("button", { name: /Continuar/i }));
+    fireEvent.click(screen.getByRole("button", { name: /continue/i }));
 
     await waitFor(() => {
       expect(mockedSignIn).toHaveBeenCalledWith(username, password);

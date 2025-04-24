@@ -7,6 +7,7 @@ import { signIn } from "@/actions/authentication";
 import { ActionResult } from "@/utils/enums";
 import { useRouter } from "next/navigation";
 import { routes } from "@/utils/routes";
+import { useTranslation } from "react-i18next";
 
 const authSchema = z.object({
   username: z.string().min(1, "O nome de usuário é obrigatório."),
@@ -14,7 +15,7 @@ const authSchema = z.object({
 });
 
 export default function Auth() {
-  // const { t } = useTranslation(["global"]);
+  const { t } = useTranslation(["global"]);
   const [formData, setFormData] = useState({ username: "", password: "" });
   const [errors, setErrors] = useState({ username: "", password: "" });
   const router = useRouter();
@@ -52,12 +53,11 @@ export default function Auth() {
     <div className="w-[22.5rem] flex flex-col gap-10">
       <div className="flex flex-col gap-4">
         <p className="text-tertiary-100 font-inter font-bold text-md">
-          Olá, seja bem-vindo(a)!
+          {t("welcomeMessage")}
         </p>
         <p className="text-tertiary-200 font-inter font-normal text-xsm">
-          Para entrar informe o{" "}
-          <span className="font-bold">nome de usuário</span> e{" "}
-          <span className="font-bold">senha.</span>
+          {t("toEnterType")} <span className="font-bold">{t("userName")}</span>{" "}
+          {t("and")} <span className="font-bold">{t("password")}</span>
         </p>
       </div>
       <div className="flex flex-col gap-8">
@@ -83,14 +83,16 @@ export default function Auth() {
         />
         <div className="flex flex-col gap-2 items-center">
           <p className="text-tertiary-200 font-inter font-normal text-caption-sm">
-            Não lembra a sua senha ?
+            {t("notRememberYourPassword")}
           </p>
           <p className="text-primary font-inter font-normal text-caption-sm cursor-pointer">
-            Toque aqui para receber ajuda
+            {t("touchHereForReceiveHelp")}
           </p>
         </div>
       </div>
-      <Button onClick={handleSubmit}>Continuar</Button>
+      <Button onClick={handleSubmit} data-testid="continue-btn">
+        {t("continue")}
+      </Button>
     </div>
   );
 }

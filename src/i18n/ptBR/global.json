@@ -1,3 +1,11 @@
 {
-  "welcomeBack": "Bem-vindo(a) de Volta"
+  "welcomeBack": "Bem-vindo(a) de Volta",
+  "welcomeMessage": "Olá, seja bem-vindo(a)!",
+  "toEnterType": " Para entrar informe o",
+  "userName": "nome de usuário",
+  "and": "e",
+  "password": "senha.",
+  "notRememberYourPassword": "Não se lembrou da senha?",
+  "touchHereForReceiveHelp": "Toque aqui para receber ajuda.",
+  "continue": "Continuar"
 }

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Poppins } from "next/font/google";
-import "./globals.css";
+import "../globals.css";
 import { TranslationProvider } from "@/providers/translation-provider";
 import { RouteParams } from "@/utils/types";
 import { getTranslation, NAMESPACES } from "@/i18n";
@@ -34,22 +34,23 @@ export default async function RootLayout({
 }>) {
   const locale = (await params).locale;
   const { resources } = await getTranslation(locale, NAMESPACES);
+  console.log(locale);
 
   return (
-    <html lang="en" className="light">
-      <body className={`${inter.className} ${poppins.className}`}>
-        <ReactQueryProvider>
-          <TranslationProvider
-            locale={locale}
-            namespaces={NAMESPACES}
-            resources={resources}
-          >
+    <html lang={locale} className="light">
+      <ReactQueryProvider>
+        <TranslationProvider
+          locale={locale}
+          namespaces={NAMESPACES}
+          resources={resources}
+        >
+          <body className={`${inter.className} ${poppins.className}`}>
             <ThemeMuiProvider>
               <main className="w-full h-screen">{children}</main>
             </ThemeMuiProvider>
-          </TranslationProvider>
-        </ReactQueryProvider>
-      </body>
+          </body>
+        </TranslationProvider>
+      </ReactQueryProvider>
     </html>
   );
 }
