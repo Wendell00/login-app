@@ -1,16 +1,15 @@
-describe('Autenticação - Login', () => {
+describe('Auth - Login', () => {
   const username = 'wendell';
   const password = 'Valido@123';
 
-  it('deve fazer login com credenciais válidas e redirecionar para a home', () => {
-    cy.visit('/auth'); // ajuste se o path for diferente
+  it('It should log in with valid credentials and redirect to the home page.', () => {
+    cy.visit('/');
 
     cy.get('input#username').type(username);
     cy.get('input#password').type(password);
 
     cy.contains('button', 'Continuar').click();
 
-    // aguarda o redirecionamento e valida a URL
-    cy.url().should('include', '/home'); // ajuste conforme seu routes.home.home
+    cy.get('[data-testid="main-div"]').should('be.visible');
   });
 });
