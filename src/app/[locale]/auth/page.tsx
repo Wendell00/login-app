@@ -24,7 +24,11 @@ export default function Auth() {
     setFormData((prev) => ({ ...prev, [id]: value }));
   };
 
-  const handleSubmit = async (): Promise<void> => {
+  const handleSignIn = async () => {
+    return await signIn(formData.username, formData.password);
+  };
+
+  const handleSubmit = (): void => {
     const result = authSchema.safeParse(formData);
     if (!result.success) {
       const fieldErrors = result.error.flatten().fieldErrors;
@@ -34,12 +38,13 @@ export default function Auth() {
       });
     } else {
       setErrors({ username: "", password: "" });
-      const response = await signIn(formData.username, formData.password);
-      if (response === ActionResult.Success) {
-        router.replace(routes.home.home);
-      } else if (response === ActionResult.NewPasswordRequired) {
-        router.push(routes.auth.createNewPassword(formData.username));
-      }
+      handleSignIn().then((response) => {
+        if (response === ActionResult.Success) {
+          router.replace(routes.home.home);
+        } else if (response === ActionResult.NewPasswordRequired) {
+          router.push(routes.auth.createNewPassword(formData.username));
+        }
+      });
     }
   };
 
@@ -85,7 +90,7 @@ export default function Auth() {
           </p>
         </div>
       </div>
-      <Button onClick={async () => await handleSubmit()}>Continuar</Button>
+      <Button onClick={handleSubmit}>Continuar</Button>
     </div>
   );
 }
