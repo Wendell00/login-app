@@ -34,15 +34,11 @@ export default function Auth() {
       });
     } else {
       setErrors({ username: "", password: "" });
-      console.log("Form data is valid:", formData);
-      try {
-        const response = await signIn(formData.username, formData.password);
-        if (response === ActionResult.NewPasswordRequired) {
-          router.push(routes.auth.createNewPassword(formData.username));
-        }
-        console.log("Sign-in function executed successfully");
-      } catch (error) {
-        console.error("Error during sign-in:", error);
+      const response = await signIn(formData.username, formData.password);
+      if (response === ActionResult.Success) {
+        router.replace(routes.home.home);
+      } else if (response === ActionResult.NewPasswordRequired) {
+        router.push(routes.auth.createNewPassword(formData.username));
       }
     }
   };

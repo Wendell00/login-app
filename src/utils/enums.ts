@@ -3,6 +3,7 @@ export enum CookieKey {
     RefreshToken = 'REFRESH_TOKEN',
     Locale = 'NEXT_LOCALE',
     Session = "SESSION",
+    Username = "USERNAME",
   }
 
   export enum ActionResult {
