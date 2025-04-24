@@ -78,6 +78,9 @@ jobs:
   
       - name: Install dependencies
         run: pnpm install
+
+      - name: Show env var
+        run: echo "Base URL: $NEXT_PUBLIC_API_BASE_URL"
   
       - name: Run Cypress Tests
         uses: cypress-io/github-action@v6
