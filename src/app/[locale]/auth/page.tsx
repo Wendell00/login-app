@@ -24,7 +24,7 @@ export default function Auth() {
     setFormData((prev) => ({ ...prev, [id]: value }));
   };
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (): Promise<void> => {
     const result = authSchema.safeParse(formData);
     if (!result.success) {
       const fieldErrors = result.error.flatten().fieldErrors;
@@ -85,7 +85,7 @@ export default function Auth() {
           </p>
         </div>
       </div>
-      <Button onClick={handleSubmit}>Continuar</Button>
+      <Button onClick={async () => await handleSubmit()}>Continuar</Button>
     </div>
   );
 }
